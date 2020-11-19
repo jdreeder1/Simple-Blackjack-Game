@@ -1,160 +1,3 @@
-<html lang="eng">
-   <head>
-       <title>Blackjack</title>
-      
-       <meta charset="utf-8">
-      
-       <script
-        	src="https://code.jquery.com/jquery-3.4.1.min.js"
-        	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        	crossorigin="anonymous"></script>
-      
-       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        
-        <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
-      
-        <link rel="stylesheet" type="text/css">
-        
-        <style>
-        body{
-            background-color: green;
-            color: white;
-            font-family: Gothic, serif;
-            margin: 1%;
-        }
-        img {
-            height: 110px;
-            width: 90px;
-        }
-        #poker_chips {
-            height: 300px;
-            width: 400px;
-        }
-        #bj {
-            font-family: 'Pacifico', cursive;
-        }
-       #deal {
-           width: 100%;
-           height: 40px;
-           background-color: black;
-           border-radius: 10px;
-            border-color: green;
-            color: white;
-           margin-top: 10vh;
-       }
-      
-       .col-md-4 {
-           text-align: center;
-       }
-       /*#playerHit {
-           margin-top: 40vh;
-       }*/
-
-       #playerButtons{
-           padding-top: 5vh;
-       }
-       </style>
-   </head>
-   <body onload="hideSplit(); showCard1(); placeBet(); leftInDeck(); allowDeal();">
-   <div class="row">  
-       <div class="col-md-2">
-       <br>
-        <div id="split_options">
-           <div id="split1"></div>
-           <div id="split1Image"></div>
-           <div id="split1Total"></div>
-           <div id="split2"></div>
-           <div id="split2Image"></div>
-           <div id="split2Total"></div>
-           <div id="split3"></div>
-           <div id="split3Image"></div>
-           <div id="split3Total"></div>
-           <div id="split4"></div>
-           <div id="split4Image"></div>
-           <div id="split4Total"></div>
-           <div id="splitPlayerTotal"></div>
-           <button class="split_btn" id="playerSplitHit">Hit</button>
-           <button class="split_btn" id="playerSplitStand" onclick="playerSplitStand();">Stand</button><br>
-           <div id="splitPlayerBet"></div>
-        </div>
-      </div>
-       <div class="col-md-2" id="player">Player
-           <div id="crd1"></div>
-           <div id="crd1Image"></div>
-           <div id="crd1Total"></div>
-           <div id="crd2"></div>
-           <div id="crd2Image"></div>        
-           <div id="crd2Total"></div>
-           <div id="crd3"></div>
-           <div id="crd3Image"></div>
-           <div id="crd3Total"></div>
-           <div id="crd4"></div>
-           <div id="crd4Image"></div>
-           <div id="crd4Total"></div>         
-               <div id="pTotal"></div>
-           
-           <span id="playerChips">1000</span><br>
-           <span id="playerBet"></span><br><br>
-           <!--<span id="cardsLeft"></span> -->
-           <input type="hidden" id="cardsLeft">
-           <!--Place your bet! <input type="text" id="playerBet">-->
-       </div>
-          
-       <div class="col-md-4">
-      
-       <h1 id="bj">BlackJack</h1><br>
-        <img id="poker_chips" src="poker_chips.jpg" alt="Poker Chips">
-       <div class="money"></div>
-      
-       <button id="deal" onclick="dealCards();">Deal</button>
-            <div id="playerButtons">
-                <button id="playerHit">Hit</button>
-                <button id="playerStand" onclick="playerStand();">Stand</button><br>
-                <button id="playerDouble" onclick="doubleDown();">Double Down</button>
-                <button id="playerSplit" onclick="split();">Split</button><br>
-            </div>
-       </div>
-       <div class="col-md-4" id="dealer">Dealer
-            <div id="dlrCrd1"></div>
-            <div id="dlrCrd1Image"></div>
-            <div id="dlrCrd1Total"></div>
-            <div id="dlrCrd2"></div>
-            <div id="dlrCrd2Image"></div>
-            <div id="dlrCrd2Total"></div>
-            <div id="dlrCrd3"></div>
-            <div id="dlrCrd3Image"></div>
-            <div id="dlrCrd3Total"></div>
-            <div id="dlrCrd4"></div>
-            <div id="dlrCrd4Image"></div>
-            <div id="dlrCrd4Total"></div>
-           <div id="dTotal"></div>
-       </div>
-   </div>
-  
-   </body>
-   <script>
-      /* function allowHit(){
-        if($.trim($("crd1").html())==""){
-            $("#playerHit").hide();
-            }
-        if($.trim($("crd1").html())!="") {
-            $("#playerHit").show();
-        }
-       }*/
-     /*  function cardBacks(){
-            $("#crd1Image").html('<img src="cardback.png">');
-            $("#crd2Image").html('<img src="cardback.png">');
-            $("#crd3Image").html('<img src="cardback.png">');
-            $("#crd4Image").html('<img src="cardback.png">');
-
-            $("#dlrCrd1Image").html('<img src="cardback.png">');
-            $("#dlrCrd2Image").html('<img src="cardback.png">');
-            $("#dlrCrd3Image").html('<img src="cardback.png">');
-            $("#dlrCrd4Image").html('<img src="cardback.png">');
-
-       }*/
-
        function hideSplit(){
            $("#playerSplitHit").hide();
             $("#playerSplitStand").hide();
@@ -253,61 +96,61 @@
        localStorage.setItem("chips", playerChips);
       //https://depositphotos.com/214169678/stock-illustration-full-deck-of-cards.html
            var cardArr = [
-               {face: "Ace of Hearts", value: 11, image: "ace_hearts.png"},
-               {face: "King of Hearts", value: 10, image: "king_hearts.png"},
-               {face: "Queen of Hearts", value: 10, image: "queen_hearts.png"},
-               {face: "Jack of Hearts", value: 10, image: "jack_hearts.png"},
-               {face: "Ten of Hearts", value: 10, image: "ten_hearts.png"},
-               {face: "Nine of Hearts", value: 9, image: "nine_hearts.png"},
-               {face: "Eight of Hearts", value: 8, image: "eight_hearts.png"},
-               {face: "Seven of Hearts", value: 7, image: "seven_hearts.png"},
-               {face: "Six of Hearts", value: 6, image: "six_hearts.png"},
-               {face: "Five of Hearts", value: 5, image: "five_hearts.png"},
-               {face: "Four of Hearts", value: 4, image: "four_hearts.png"},
-               {face: "Three of Hearts", value: 3, image: "three_hearts.png"},
-               {face: "Deuce of Hearts", value: 2, image: "two_hearts.png"},
+               {face: "Ace of Hearts", value: 11, image: "../static/ace_hearts.png"},
+               {face: "King of Hearts", value: 10, image: "../static/king_hearts.png"},
+               {face: "Queen of Hearts", value: 10, image: "../static/queen_hearts.png"},
+               {face: "Jack of Hearts", value: 10, image: "../static/jack_hearts.png"},
+               {face: "Ten of Hearts", value: 10, image: "../static/ten_hearts.png"},
+               {face: "Nine of Hearts", value: 9, image: "../static/nine_hearts.png"},
+               {face: "Eight of Hearts", value: 8, image: "../static/eight_hearts.png"},
+               {face: "Seven of Hearts", value: 7, image: "../static/seven_hearts.png"},
+               {face: "Six of Hearts", value: 6, image: "../static/six_hearts.png"},
+               {face: "Five of Hearts", value: 5, image: "../static/five_hearts.png"},
+               {face: "Four of Hearts", value: 4, image: "../static/four_hearts.png"},
+               {face: "Three of Hearts", value: 3, image: "../static/three_hearts.png"},
+               {face: "Deuce of Hearts", value: 2, image: "../static/two_hearts.png"},
               
-               {face: "Ace of Spades", value: 11, image: "ace_spades.png"},
-               {face: "King of Spades", value: 10, image: "king_spades.png"},
-               {face: "Queen of Spades", value: 10, image: "queen_spades.png"},
-               {face: "Jack of Spades", value: 10, image: "jack_spades.png"},
-               {face: "Ten of Spades", value: 10, image: "ten_spades.png"},
-               {face: "Nine of Spades", value: 9, image: "nine_spades.png"},
-               {face: "Eight of Spades", value: 8, image: "eight_spades.png"},
-               {face: "Seven of Spades", value: 7, image: "seven_spades.png"},
-               {face: "Six of Spades", value: 6, image: "six_spades.png"},
-               {face: "Five of Spades", value: 5, image: "five_spades.png"},
-               {face: "Four of Spades", value: 4, image: "four_spades.png"},
-               {face: "Three of Spades", value: 3, image: "three_spades.png"},
-               {face: "Deuce of Spades", value: 2, image: "two_spades.png"},
+               {face: "Ace of Spades", value: 11, image: "../static/ace_spades.png"},
+               {face: "King of Spades", value: 10, image: "../static/king_spades.png"},
+               {face: "Queen of Spades", value: 10, image: "../static/queen_spades.png"},
+               {face: "Jack of Spades", value: 10, image: "../static/jack_spades.png"},
+               {face: "Ten of Spades", value: 10, image: "../static/ten_spades.png"},
+               {face: "Nine of Spades", value: 9, image: "../static/nine_spades.png"},
+               {face: "Eight of Spades", value: 8, image: "../static/eight_spades.png"},
+               {face: "Seven of Spades", value: 7, image: "../static/seven_spades.png"},
+               {face: "Six of Spades", value: 6, image: "../static/six_spades.png"},
+               {face: "Five of Spades", value: 5, image: "../static/five_spades.png"},
+               {face: "Four of Spades", value: 4, image: "../static/four_spades.png"},
+               {face: "Three of Spades", value: 3, image: "../static/three_spades.png"},
+               {face: "Deuce of Spades", value: 2, image: "../static/two_spades.png"},
               
-               {face: "Ace of Diamonds", value: 11, image: "ace_diamonds.png"},
-               {face: "King of Diamonds", value: 10, image: "king_diamonds.png"},
-               {face: "Queen of Diamonds", value: 10, image: "queen_diamonds.png"},
-               {face: "Jack of Diamonds", value: 10, image: "jack_diamonds.png"},
-               {face: "Ten of Diamonds", value: 10, image: "ten_diamonds.png"},
-               {face: "Nine of Diamonds", value: 9, image: "nine_diamonds.png"},
-               {face: "Eight of Diamonds", value: 8, image: "eight_diamonds.png"},
-               {face: "Seven of Diamonds", value: 7, image: "seven_diamonds.png"},
-               {face: "Six of Diamonds", value: 6, image: "six_diamonds.png"},
-               {face: "Five of Diamonds", value: 5, image: "five_diamonds.png"},
-               {face: "Four of Diamonds", value: 4, image: "four_diamonds.png"},
-               {face: "Three of Diamonds", value: 3, image: "three_diamonds.png"},
-               {face: "Deuce of Diamonds", value: 2, image: "two_diamonds.png"},
+               {face: "Ace of Diamonds", value: 11, image: "../static/ace_diamonds.png"},
+               {face: "King of Diamonds", value: 10, image: "../static/king_diamonds.png"},
+               {face: "Queen of Diamonds", value: 10, image: "../static/queen_diamonds.png"},
+               {face: "Jack of Diamonds", value: 10, image: "../static/jack_diamonds.png"},
+               {face: "Ten of Diamonds", value: 10, image: "../static/ten_diamonds.png"},
+               {face: "Nine of Diamonds", value: 9, image: "../static/nine_diamonds.png"},
+               {face: "Eight of Diamonds", value: 8, image: "../static/eight_diamonds.png"},
+               {face: "Seven of Diamonds", value: 7, image: "../static/seven_diamonds.png"},
+               {face: "Six of Diamonds", value: 6, image: "../static/six_diamonds.png"},
+               {face: "Five of Diamonds", value: 5, image: "../static/five_diamonds.png"},
+               {face: "Four of Diamonds", value: 4, image: "../static/four_diamonds.png"},
+               {face: "Three of Diamonds", value: 3, image: "../static/three_diamonds.png"},
+               {face: "Deuce of Diamonds", value: 2, image: "../static/two_diamonds.png"},
               
-               {face: "Ace of Clubs", value: 11, image: "ace_clubs.png"},
-               {face: "King of Clubs", value: 10, image: "king_clubs.png"},
-               {face: "Queen of Clubs", value: 10, image: "queen_clubs.png"},
-               {face: "Jack of Clubs", value: 10, image: "jack_clubs.png"},
-               {face: "Ten of Clubs", value: 10, image: "ten_clubs.png"},
-               {face: "Nine of Clubs", value: 9, image: "nine_clubs.png"},
-               {face: "Eight of Clubs", value: 8, image: "eight_clubs.png"},
-               {face: "Seven of Clubs", value: 7, image: "seven_clubs.png"},
-               {face: "Six of Clubs", value: 6, image: "six_clubs.png"},
-               {face: "Five of Clubs", value: 5, image: "five_clubs.png"},
-               {face: "Four of Clubs", value: 4, image: "four_clubs.png"},
-               {face: "Three of Clubs", value: 3, image: "three_clubs.png"},
-               {face: "Deuce of Clubs", value: 2, image: "two_clubs.png"}
+               {face: "Ace of Clubs", value: 11, image: "../static/ace_clubs.png"},
+               {face: "King of Clubs", value: 10, image: "../static/king_clubs.png"},
+               {face: "Queen of Clubs", value: 10, image: "../static/queen_clubs.png"},
+               {face: "Jack of Clubs", value: 10, image: "../static/jack_clubs.png"},
+               {face: "Ten of Clubs", value: 10, image: "../static/ten_clubs.png"},
+               {face: "Nine of Clubs", value: 9, image: "../static/nine_clubs.png"},
+               {face: "Eight of Clubs", value: 8, image: "../static/eight_clubs.png"},
+               {face: "Seven of Clubs", value: 7, image: "../static/seven_clubs.png"},
+               {face: "Six of Clubs", value: 6, image: "../static/six_clubs.png"},
+               {face: "Five of Clubs", value: 5, image: "../static/five_clubs.png"},
+               {face: "Four of Clubs", value: 4, image: "../static/four_clubs.png"},
+               {face: "Three of Clubs", value: 3, image: "../static/three_clubs.png"},
+               {face: "Deuce of Clubs", value: 2, image: "../static/two_clubs.png"}
               
            ];
           
@@ -365,7 +208,7 @@
                var spl = cardArr.splice(rand, 1);
                $("#crd1").html(spl[0].face);
                //$("#crd1Image").html('<img src="cardback.png">');
-               $("#crd1Image").html('<img src="'+spl[0].image+'">');
+               $("#crd1Image").html(`<img src="../static/${spl[0].image}">`);
                showCard1();
                //*BUG* NEED TO DECREASE ACE TO 1 IF TOTAL > 21
               
@@ -391,7 +234,7 @@
                if($.trim($("#split1").html())==""){
                     splitImg = spl2.slice(); //[0].image; //.toString();
                     $("#split1Image").hide();
-                    $("#split1Image").html('<img src="'+splitImg[0].image+'">');
+                    $("#split1Image").html(`<img src="../static/${splitImg[0].image}">`);
                }
                else{
                     $("#split1Image").show();  
@@ -403,7 +246,7 @@
 
 
                $("#crd2").html(spl2[0].face);
-               $("#crd2Image").html('<img src="'+spl2[0].image+'">');
+               $("#crd2Image").html(`<img src="../static/${spl2[0].image}">`);
                 
                /* if(splitClicked == false){
                     $("#split1Image").show();
@@ -449,7 +292,7 @@
                var rand5 = Math.floor(Math.random()* cardArr.length);
                var spl5 = cardArr.splice(rand5, 1);
                $("#crd3").html(spl5[0].face);
-               $("#crd3Image").html('<img src="'+spl5[0].image+'">');
+               $("#crd3Image").html(`<img src="../static/${spl5[0].image}">`);
                var c3 = $("#crd3Total").html(spl5[0].value);
                playerTotal += spl5[0].value;
                $("#pTotal").html("Total: " + playerTotal);
@@ -516,7 +359,7 @@
                var rand = Math.floor(Math.random()* cardArr.length);
                var spl = cardArr.splice(rand, 1);
                $("#crd4").html(spl[0].face);
-               $("#crd4Image").html('<img src="'+spl[0].image+'">');
+               $("#crd4Image").html(`<img src="../static/${spl[0].image}">`);
 
                var c4 = $("#crd4Total").html(spl[0].value);
                playerTotal += spl[0].value;
@@ -568,7 +411,7 @@
                //$("crd3").html(spl3[0].face);
                document.getElementById("dlrCrd1").innerHTML = spl3[0].face;
 
-               $("#dlrCrd1Image").html('<img src="'+spl3[0].image+'">');
+               $("#dlrCrd1Image").html(`<img src="../static/${spl3[0].image}">`);
               
                dealerTotal += spl3[0].value;
                 $("#dlrCrd1Total").html(spl3[0].value);
@@ -588,7 +431,7 @@
                //$("crd3").html(spl3[0].face);
                document.getElementById("dlrCrd2").innerHTML = spl[0].face;
 
-               $("#dlrCrd2Image").html('<img src="'+spl[0].image+'">');
+               $("#dlrCrd2Image").html(`<img src="../static/${spl[0].image}">`);
               
                dealerTotal += spl[0].value;
                 $("#dlrCrd2Total").html(spl[0].value);
@@ -644,7 +487,7 @@
                //$("crd3").html(spl3[0].face);
                document.getElementById("dlrCrd3").innerHTML = spl[0].face;
 
-               $("#dlrCrd3Image").html('<img src="'+spl[0].image+'">');
+               $("#dlrCrd3Image").html(`<img src="../static/${spl[0].image}">`);
 
               
                dealerTotal += spl[0].value;
@@ -794,7 +637,7 @@
                //$("crd3").html(spl3[0].face);
                document.getElementById("dlrCrd4").innerHTML = spl[0].face;
 
-               $("#dlrCrd4Image").html('<img src="'+spl[0].image+'">');
+               $("#dlrCrd4Image").html(`<img src="../static/${spl[0].image}">`);
               
                dealerTotal += spl[0].value;
                 $("#dlrCrd4Total").html(spl[0].value);
@@ -1066,7 +909,6 @@
                 $("#playerChips").html(newChips);
                 /*var pc = $("playerChips").html();
                 var newChips = Number(pc) - Number(plyrBet);
-
                 $("playerChips").html(newChips);*/
                 
                 $("#playerHit").css("pointer-events", "none");
@@ -1083,7 +925,7 @@
 
                 
                $("#split1").html(c2);
-               $("split1Image").html('<img src="'+splitImg[0].image+'">');        //('<img src="'+c2Image+'">');
+               $("split1Image").html(`<img src="../static/${splitImg[0].image}">`);        
                //console.log(c2Img);
                $("#split1Total").html(c2Total);
               
@@ -1098,7 +940,7 @@
                var rand = Math.floor(Math.random()* cardArr.length);
                var spl = cardArr.splice(rand, 1);
                $("#split2").html(spl[0].face);
-               $("#split2Image").html('<img src="'+spl[0].image+'">');
+               $("#split2Image").html(`<img src="../static/${spl[0].image}">`);
                var st = $("#split2Total").html(spl[0].value);
                 
                 //var spl1Tot = $("#split1Total").html();
@@ -1477,9 +1319,3 @@
                 }
                  }, 1000);
             }
-
-        
-          
-   
-   </script>
-</html>

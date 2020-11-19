@@ -1,0 +1,136 @@
+<html lang="eng">
+   <head>
+       <title>Blackjack</title>
+      
+       <meta charset="utf-8">
+      
+       <script
+        	src="https://code.jquery.com/jquery-3.4.1.min.js"
+        	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        	crossorigin="anonymous"></script>
+      
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+        <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+      
+        <link rel="stylesheet" type="text/css">
+        
+        <style>
+        body{
+            background-color: green;
+            color: white;
+            font-family: Gothic, serif;
+            margin: 1%;
+        }
+        img {
+            height: 110px;
+            width: 90px;
+        }
+        #poker_chips {
+            height: 300px;
+            width: 400px;
+        }
+        #bj {
+            font-family: 'Pacifico', cursive;
+        }
+       #deal {
+           width: 100%;
+           height: 40px;
+           background-color: black;
+           border-radius: 10px;
+            border-color: green;
+            color: white;
+           margin-top: 10vh;
+       }
+      
+       .col-md-4 {
+           text-align: center;
+       }
+       /*#playerHit {
+           margin-top: 40vh;
+       }*/
+
+       #playerButtons{
+           padding-top: 5vh;
+       }
+       </style>
+   </head>
+   <body onload="hideSplit(); showCard1(); placeBet(); leftInDeck(); allowDeal();">
+   <div class="row">  
+       <div class="col-md-2">
+       <br>
+        <div id="split_options">
+           <div id="split1"></div>
+           <div id="split1Image"></div>
+           <div id="split1Total"></div>
+           <div id="split2"></div>
+           <div id="split2Image"></div>
+           <div id="split2Total"></div>
+           <div id="split3"></div>
+           <div id="split3Image"></div>
+           <div id="split3Total"></div>
+           <div id="split4"></div>
+           <div id="split4Image"></div>
+           <div id="split4Total"></div>
+           <div id="splitPlayerTotal"></div>
+           <button class="split_btn" id="playerSplitHit">Hit</button>
+           <button class="split_btn" id="playerSplitStand" onclick="playerSplitStand();">Stand</button><br>
+           <div id="splitPlayerBet"></div>
+        </div>
+      </div>
+       <div class="col-md-2" id="player">Player
+           <div id="crd1"></div>
+           <div id="crd1Image"></div>
+           <div id="crd1Total"></div>
+           <div id="crd2"></div>
+           <div id="crd2Image"></div>        
+           <div id="crd2Total"></div>
+           <div id="crd3"></div>
+           <div id="crd3Image"></div>
+           <div id="crd3Total"></div>
+           <div id="crd4"></div>
+           <div id="crd4Image"></div>
+           <div id="crd4Total"></div>         
+               <div id="pTotal"></div>
+           
+           <span id="playerChips">1000</span><br>
+           <span id="playerBet"></span><br><br>
+           <!--<span id="cardsLeft"></span> -->
+           <input type="hidden" id="cardsLeft">
+           <!--Place your bet! <input type="text" id="playerBet">-->
+       </div>
+          
+       <div class="col-md-4">
+      
+       <h1 id="bj">BlackJack</h1><br>
+        <img id="poker_chips" src="../static/poker_chips.jpg" alt="Poker Chips">
+       <div class="money"></div>
+      
+       <button id="deal" onclick="dealCards();">Deal</button>
+            <div id="playerButtons">
+                <button id="playerHit">Hit</button>
+                <button id="playerStand" onclick="playerStand();">Stand</button><br>
+                <button id="playerDouble" onclick="doubleDown();">Double Down</button>
+                <button id="playerSplit" onclick="split();">Split</button><br>
+            </div>
+       </div>
+       <div class="col-md-4" id="dealer">Dealer
+            <div id="dlrCrd1"></div>
+            <div id="dlrCrd1Image"></div>
+            <div id="dlrCrd1Total"></div>
+            <div id="dlrCrd2"></div>
+            <div id="dlrCrd2Image"></div>
+            <div id="dlrCrd2Total"></div>
+            <div id="dlrCrd3"></div>
+            <div id="dlrCrd3Image"></div>
+            <div id="dlrCrd3Total"></div>
+            <div id="dlrCrd4"></div>
+            <div id="dlrCrd4Image"></div>
+            <div id="dlrCrd4Total"></div>
+           <div id="dTotal"></div>
+       </div>
+   </div>
+        <script src="../scripts/main_script.js"></script>  
+   </body>   
+</html>
